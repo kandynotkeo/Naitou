@@ -3,13 +3,13 @@
 import { HistoryContext } from "@/contexts/HistoryContext";
 import { MoveContext } from "@/contexts/MoveContext";
 import { useEffect, useMemo, useState } from "react";
-import Naitou from "../../public/naitou";
+import Naitou from "./Naitou";
 import MOVE from "@/const/move";
 
 function Banner({ content }: { content: string }) {
   return (
     <div className="grow w-full rounded-2xl shadow-2xl/50 bg-rose-300 p-2">
-      <div className="h-full w-full rounded-2xl border-2 border-amber-200 flex items-center justify-center text-2xl text-emerald-700">
+      <div className="h-full w-full rounded-2xl border-2 border-amber-200 flex items-center justify-center font-bold text-2xl text-emerald-700">
         {content}
       </div>
     </div>
@@ -66,7 +66,7 @@ function Board() {
   }, [step, available]);
   function handleCellClick(index: number, position: string) {
     if (step > 1 && !available.includes(index)) return;
-    setHistory((prevHistory) => [position, ...prevHistory].slice(0, 10));
+    setHistory((prevHistory) => [position, ...prevHistory].slice(0, 15));
     setMove((prevMove) => {
       const newMove = [...prevMove];
       newMove[index] = step;
@@ -104,7 +104,7 @@ function Board() {
 
 export default function Gameboard() {
   return (
-    <main className="relative z-10 h-full flex-2 flex flex-col gap-8 items-center justify-between">
+    <main className="relative z-10 h-full flex-2 flex flex-col gap-8 items-center justify-center">
       <Banner content="ないとう" />
       <Board />
     </main>
